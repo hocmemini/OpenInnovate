@@ -1,6 +1,3 @@
-# Project Guardian: Reference Implementation Compendium
-## OpenInnovate Platform Implementation Example
-
 ### 1. Project Overview
 
 #### 1.1 Core Innovation
