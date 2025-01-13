@@ -1,5 +1,3 @@
-# OpenInnovate Platform Documentation
-
 ## Core Architecture
 
 ### 1. Platform Overview
