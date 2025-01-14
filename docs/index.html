@@ -1,347 +1,67 @@
 <!DOCTYPE html>
-<html lang="en" data-color-mode="auto" data-light-theme="light" data-dark-theme="dark">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OpenInnovate - Humanitarian Innovation Platform</title>
-    <meta name="description" content="A decentralized platform uniting inventors, manufacturers, and the public to accelerate life-saving technology implementation.">
-    <link rel="canonical" href="https://openinnovate.org">
-    <style>
-        :root {
-            --color-canvas-default: #ffffff;
-            --color-canvas-subtle: #f6f8fa;
-            --color-border-default: #d0d7de;
-            --color-border-muted: #d8dee4;
-            --color-accent-fg: #0969da;
-            --color-fg-default: #24292f;
-            --color-fg-muted: #57606a;
-            --color-header-bg: #24292f;
-            --color-header-text: #ffffff;
-            --color-btn-primary-bg: #2da44e;
-            --color-btn-primary-hover-bg: #2c974b;
-            --color-success-fg: #1a7f37;
-            --color-scale-gray-0: #f6f8fa;
-            --color-scale-gray-1: #eaeef2;
-            --color-chart-positive: #2da44e;
-        }
-
-        [data-color-mode="dark"] {
-            --color-canvas-default: #0d1117;
-            --color-canvas-subtle: #161b22;
-            --color-border-default: #30363d;
-            --color-border-muted: #21262d;
-            --color-accent-fg: #58a6ff;
-            --color-fg-default: #c9d1d9;
-            --color-fg-muted: #8b949e;
-            --color-header-bg: #161b22;
-            --color-header-text: #f0f6fc;
-            --color-btn-primary-bg: #238636;
-            --color-btn-primary-hover-bg: #2ea043;
-            --color-success-fg: #3fb950;
-            --color-scale-gray-0: #161b22;
-            --color-scale-gray-1: #21262d;
-            --color-chart-positive: #238636;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
-            line-height: 1.5;
-            color: var(--color-fg-default);
-            background-color: var(--color-canvas-default);
-            margin: 0;
-            font-size: 14px;
-            position: relative;
-        }
-
-        .banner {
-            background: var(--color-btn-primary-bg);
-            color: white;
-            text-align: center;
-            padding: 8px;
-            font-weight: 600;
-        }
-
-        .banner a {
-            color: white;
-            text-decoration: none;
-        }
-
-        .banner a:hover {
-            text-decoration: underline;
-        }
-
-        .AppHeader {
-            background-color: var(--color-header-bg);
-            padding: 16px 0;
-            color: var(--color-header-text);
-            margin-bottom: 24px;
-        }
-
-        .container {
-            max-width: 1012px;
-            margin: 0 auto;
-            padding: 0 16px;
-        }
-
-        .Box {
-            background-color: var(--color-canvas-default);
-            border: 1px solid var(--color-border-default);
-            border-radius: 6px;
-            margin-bottom: 16px;
-        }
-
-        .Box-header {
-            background-color: var(--color-canvas-subtle);
-            border-bottom: 1px solid var(--color-border-default);
-            padding: 16px;
-            display: flex;
-            align-items: center;
-        }
-
-        .Box-title {
-            font-size: 14px;
-            font-weight: 600;
-            flex: 1;
-            margin: 0;
-        }
-
-        .Box-body {
-            padding: 16px;
-        }
-
-        .metrics-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-            margin: 16px 0;
-        }
-
-        .metric-box {
-            background-color: var(--color-canvas-subtle);
-            border: 1px solid var(--color-border-muted);
-            border-radius: 6px;
-            padding: 16px;
-            text-align: center;
-            transition: transform 0.2s;
-        }
-
-        .metric-box:hover {
-            transform: translateY(-2px);
-        }
-
-        .metric-value {
-            font-size: 24px;
-            font-weight: 600;
-            color: var(--color-fg-default);
-        }
-
-        .metric-label {
-            font-size: 12px;
-            color: var(--color-fg-muted);
-            margin-top: 4px;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 5px 16px;
-            font-size: 14px;
-            font-weight: 500;
-            line-height: 20px;
-            white-space: nowrap;
-            vertical-align: middle;
-            cursor: pointer;
-            user-select: none;
-            border: 1px solid;
-            border-radius: 6px;
-            appearance: none;
-            text-decoration: none;
-            transition: .2s cubic-bezier(0.3, 0, 0.5, 1);
-            transition-property: color,background-color,border-color;
-            color: var(--color-fg-default);
-            background-color: var(--color-canvas-default);
-            border-color: var(--color-border-default);
-        }
-
-        .btn:hover {
-            background-color: var(--color-canvas-subtle);
-            border-color: var(--color-border-muted);
-            text-decoration: none;
-        }
-
-        .btn-primary {
-            color: #ffffff;
-            background-color: var(--color-btn-primary-bg);
-            border-color: var(--color-border-default);
-        }
-
-        .btn-primary:hover {
-            background-color: var(--color-btn-primary-hover-bg);
-        }
-
-        .Label {
-            display: inline-block;
-            padding: 0 7px;
-            font-size: 12px;
-            font-weight: 500;
-            line-height: 18px;
-            border-radius: 2em;
-            background-color: var(--color-scale-gray-0);
-            border: 1px solid var(--color-scale-gray-1);
-            margin-left: 8px;
-        }
-
-        .footer {
-            margin-top: 40px;
-            padding-top: 40px;
-            padding-bottom: 40px;
-            border-top: 1px solid var(--color-border-muted);
-            text-align: center;
-            color: var(--color-fg-muted);
-        }
-
-        .footer a {
-            color: var(--color-fg-muted);
-            text-decoration: none;
-        }
-
-        .footer a:hover {
-            color: var(--color-accent-fg);
-        }
-
-        @media (max-width: 768px) {
-            .metrics-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 544px) {
-            .metrics-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <title>OpenInnovate</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="banner">
-        <a href="https://github.com/hocmemini/OpenInnovate">View Project on GitHub →</a>
+
+<header class="bg-gray-800 text-white py-4">
+    <div class="container mx-auto flex justify-between items-center">
+        <img src="./logo.png" alt="OpenInnovate Logo" class="w-16">
+        <nav>
+            <ul class="flex space-x-6">
+                <li><a href="#" class="hover:text-gray-400">Home</a></li>
+                <li><a href="#about" class="hover:text-gray-400">About</a></li>
+                <li><a href="#projects" class="hover:text-gray-400">Projects</a></li>
+                <li><a href="#contact" class="hover:text-gray-400">Contact</a></li>
+            </ul>
+        </nav>
     </div>
+</header>
 
-    <div class="AppHeader">
-     <div class="container">
-        <img src="./logo.jpg" alt="OpenInnovate Logo" class="AppHeader-image">
-        <h1 class="AppHeader-title">OpenInnovate Platform</h1>
-        <div class="AppHeader-subtitle">Bridging Innovation and Implementation</div>
-     </div>
-    </div>
+<main>
+    <section id="about" class="py-12 bg-gray-100 text-center">
+        <h2 class="text-2xl font-semibold">About Us</h2>
+        <p class="mt-4 text-gray-600">We connect innovation with implementation through collaborative projects.</p>
+    </section>
 
-    <div class="container">
-        <div class="Box">
-            <div class="Box-header">
-                <h2 class="Box-title">MIT Digital Currency Initiative Research</h2>
-            </div>
-            <div class="Box-body">
-                <p>OpenInnovate represents a novel framework for accelerating humanitarian innovation through blockchain technology and aligned incentives. This research, in collaboration with MIT's Digital Currency Initiative, explores how decentralized systems can bridge the gap between innovation and implementation.</p>
-                <a href="https://github.com/hocmemini/OpenInnovate/blob/main/MIT-DCI-OpenInnovate-Proposal.md" class="btn">Read Research Proposal</a>
-            </div>
-        </div>
-
-        <div class="Box">
-            <div class="Box-header">
-                <h2 class="Box-title">Technical Protocol</h2>
-                <span class="Label">RFC v1</span>
-            </div>
-            <div class="Box-body">
-                <div class="metrics-grid">
-                    <div class="metric-box">
-                        <div class="metric-value">Verification</div>
-                        <div class="metric-label">Impact & Implementation</div>
-                    </div>
-                    <div class="metric-box">
-                        <div class="metric-value">Governance</div>
-                        <div class="metric-label">Community-Driven</div>
-                    </div>
-                    <div class="metric-box">
-                        <div class="metric-value">Resource</div>
-                        <div class="metric-label">Optimization</div>
-                    </div>
-                    <div class="metric-box">
-                        <div class="metric-value">Market</div>
-                        <div class="metric-label">Integration</div>
-                    </div>
+    <section id="projects" class="py-12">
+        <div class="container mx-auto">
+            <h2 class="text-2xl font-semibold text-center">Our Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+                <!-- Example Project -->
+                <div class="bg-white p-6 shadow-md rounded-lg">
+                    <h3 class="text-xl font-medium">Project Name</h3>
+                    <p class="text-gray-600 mt-2">A brief description of the project...</p>
                 </div>
-                <a href="https://github.com/hocmemini/OpenInnovate/blob/main/RFC-OpenInnovate-Protocol-v1.md" class="btn">Explore Protocol</a>
+                <!-- Add more projects similarly -->
             </div>
         </div>
+    </section>
 
-        <div class="Box">
-            <div class="Box-header">
-                <h2 class="Box-title">Innovation Gap</h2>
-                <span class="Label">2023 Data</span>
-            </div>
-            <div class="Box-body">
-                <div class="metrics-grid">
-                    <div class="metric-box">
-                        <div class="metric-value">$2.5T</div>
-                        <div class="metric-label">Global Innovation Gap</div>
-                    </div>
-                    <div class="metric-box">
-                        <div class="metric-value">7.3 yrs</div>
-                        <div class="metric-label">Implementation Time</div>
-                    </div>
-                    <div class="metric-box">
-                        <div class="metric-value">12%</div>
-                        <div class="metric-label">Success Rate</div>
-                    </div>
-                    <div class="metric-box">
-                        <div class="metric-value">23%</div>
-                        <div class="metric-label">Resource Efficiency</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <section id="contact" class="py-12 bg-gray-100 text-center">
+        <h2 class="text-2xl font-semibold">Contact Us</h2>
+        <form class="mt-6 max-w-lg mx-auto">
+            <input type="text" placeholder="Your Name" class="w-full px-4 py-2 mb-4 border rounded-md">
+            <input type="email" placeholder="Your Email" class="w-full px-4 py-2 mb-4 border rounded-md">
+            <textarea placeholder="Your Message" class="w-full px-4 py-2 mb-4 border rounded-md" rows="4"></textarea>
+            <button type="submit" class="bg-blue-600 text-white py-2 px-6 rounded-md hover:bg-blue-700">Send</button>
+        </form>
+    </section>
+</main>
 
-        <div class="Box">
-            <div class="Box-header">
-                <h2 class="Box-title">Reference Implementation</h2>
-                <span class="Label">Project Guardian</span>
-            </div>
-            <div class="Box-body">
-                <p>Explore our first reference implementation demonstrating the platform's capabilities through revolutionary child safety technology.</p>
-                <a href="https://github.com/hocmemini/Project--Guardian" class="btn btn-primary">View Project Guardian</a>
-            </div>
-        </div>
-
-        <div class="Box">
-            <div class="Box-header">
-                <h2 class="Box-title">Platform Documentation</h2>
-            </div>
-            <div class="Box-body">
-                <div class="metrics-grid">
-                    <div class="metric-box">
-                        <a href="https://github.com/hocmemini/OpenInnovate#openinnovate-platform" class="btn" style="width: 100%;">Platform Overview</a>
-                    </div>
-                    <div class="metric-box">
-                        <a href="https://github.com/hocmemini/OpenInnovate/blob/main/MIT-DCI-Humanitarian-Thesis.md" class="btn" style="width: 100%;">Research Thesis</a>
-                    </div>
-                    <div class="metric-box">
-                        <a href="https://github.com/hocmemini/OpenInnovate/blob/main/RFC-OpenInnovate-Protocol-v1.md" class="btn" style="width: 100%;">Technical Protocol</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="footer">
-            <p>OpenInnovate: Bridging innovation and implementation, one life-saving idea at a time.</p>
-            <p><a href="mailto:collaborate@openinnovate.org">collaborate@openinnovate.org</a></p>
-            <p>
-                <a href="https://github.com/hocmemini/OpenInnovate">GitHub Repository</a>
-                &nbsp;&middot;&nbsp;
-                <a href="https://github.com/hocmemini/OpenInnovate/blob/main/MIT-DCI-Humanitarian-Thesis.md">Research Thesis</a>
-                &nbsp;&middot;&nbsp;
-                <a href="https://github.com/hocmemini/OpenInnovate/blob/main/RFC-OpenInnovate-Protocol-v1.md">Technical Protocol</a>
-                &nbsp;&middot;&nbsp;
-                <a href="https://github.com/hocmemini/Project--Guardian">Project Guardian</a>
-            </p>
+<footer class="bg-gray-800 text-white py-4">
+    <div class="container mx-auto text-center">
+        <p>&copy; 2025 OpenInnovate. All Rights Reserved.</p>
+        <div class="flex justify-center space-x-4 mt-2">
+            <a href="#" class="hover:text-gray-400">Privacy Policy</a>
+            <a href="#" class="hover:text-gray-400">Terms of Service</a>
         </div>
     </div>
+</footer>
+
 </body>
 </html>
