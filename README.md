@@ -34,8 +34,8 @@ To democratize the development and implementation of humanitarian innovations by
 
 ## Documentation
 
-- [Platform Philosophy](philosophy/philosophy.md)
-- [Platform Framework](platform/platform.md)
+- [Platform Philosophy](philosophy/mission.md)
+- [Platform Framework](platform/overview.md)
 
 ## Active Projects
 
