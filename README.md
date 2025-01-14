@@ -39,8 +39,8 @@ To democratize the development and implementation of humanitarian innovations by
 
 ## Active Projects
 
-- [Project Guardian](projects/project guardian.md) - Revolutionary child safety system
-- 
+- [Project Guardian](projects/Project-Guardian.md) - Revolutionary child safety system
+
 ## Key Features
 
 ### Innovation Validation
