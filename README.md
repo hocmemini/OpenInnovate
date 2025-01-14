@@ -71,7 +71,7 @@ To democratize the development and implementation of humanitarian innovations by
 2. Submit Your Innovation
 
 ### For Manufacturers
-1. Review [Participation Framework](platform/platform.md)
+1. Review [Participation Framework](platform/implementation.md)
 2. Engage with Projects
 
 ### For Contributors
