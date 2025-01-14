@@ -2,6 +2,269 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenInnovate - Decentralized Humanitarian Innovation Platform</title>
+    <meta name="description" content="Revolutionizing humanitarian innovation through decentralized markets and blockchain technology.">
+    <link rel="canonical" href="https://openinnovate.org">
+    <style>
+        /* Light theme */
+        :root {
+            --color-canvas-default: #ffffff;
+            --color-canvas-subtle: #f6f8fa;
+            --color-border-default: #d0d7de;
+            --color-border-muted: #d8dee4;
+            --color-accent-fg: #0969da;
+            --color-fg-default: #24292f;
+            --color-fg-muted: #57606a;
+            --color-header-bg: #24292f;
+            --color-header-text: #ffffff;
+            --color-btn-primary-bg: #2da44e;
+            --color-btn-primary-hover-bg: #2c974b;
+            --color-success-fg: #1a7f37;
+            --color-success-emphasis: #2da44e;
+            --color-scale-gray-0: #f6f8fa;
+            --color-scale-gray-1: #eaeef2;
+            --color-chart-positive: #2da44e;
+        }
+
+        /* Dark theme */
+        [data-color-mode="dark"] {
+            --color-canvas-default: #0d1117;
+            --color-canvas-subtle: #161b22;
+            --color-border-default: #30363d;
+            --color-border-muted: #21262d;
+            --color-accent-fg: #58a6ff;
+            --color-fg-default: #c9d1d9;
+            --color-fg-muted: #8b949e;
+            --color-header-bg: #161b22;
+            --color-header-text: #f0f6fc;
+            --color-btn-primary-bg: #238636;
+            --color-btn-primary-hover-bg: #2ea043;
+            --color-success-fg: #3fb950;
+            --color-success-emphasis: #238636;
+            --color-scale-gray-0: #161b22;
+            --color-scale-gray-1: #21262d;
+            --color-chart-positive: #238636;
+        }
+
+        /* Base styles */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+            line-height: 1.5;
+            color: var(--color-fg-default);
+            background-color: var(--color-canvas-default);
+            margin: 0;
+            font-size: 14px;
+        }
+
+        /* Header */
+        .AppHeader {
+            background-color: var(--color-header-bg);
+            padding: 16px 0;
+            color: var(--color-header-text);
+            margin-bottom: 24px;
+        }
+
+        .container {
+            max-width: 1012px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        .AppHeader-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .AppHeader-subtitle {
+            font-size: 16px;
+            color: var(--color-fg-muted);
+            margin-top: 4px;
+        }
+
+        /* Box components */
+        .Box {
+            background-color: var(--color-canvas-default);
+            border: 1px solid var(--color-border-default);
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+
+        .Box-header {
+            background-color: var(--color-canvas-subtle);
+            border-bottom: 1px solid var(--color-border-default);
+            padding: 16px;
+            display: flex;
+            align-items: center;
+        }
+
+        .Box-title {
+            font-size: 14px;
+            font-weight: 600;
+            flex: 1;
+            margin: 0;
+        }
+
+        .Box-body {
+            padding: 16px;
+        }
+
+        /* Metrics */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 16px 0;
+        }
+
+        .metric-box {
+            background-color: var(--color-canvas-subtle);
+            border: 1px solid var(--color-border-muted);
+            border-radius: 6px;
+            padding: 16px;
+            text-align: center;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .metric-box:hover {
+            transform: translateY(-2px);
+        }
+
+        .metric-value {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--color-fg-default);
+            line-height: 1.2;
+        }
+
+        .metric-label {
+            font-size: 12px;
+            color: var(--color-fg-muted);
+            margin-top: 4px;
+        }
+
+        .metric-large {
+            grid-column: span 2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px;
+        }
+
+        .metric-trend {
+            display: flex;
+            align-items: baseline;
+            color: var(--color-success-fg);
+        }
+
+        .metric-chart {
+            height: 40px;
+            margin-left: 16px;
+            display: flex;
+            align-items: flex-end;
+            gap: 2px;
+        }
+
+        .chart-bar {
+            width: 4px;
+            background-color: var(--color-chart-positive);
+            border-radius: 2px;
+            transition: height 0.3s ease-in-out;
+        }
+
+        /* Labels */
+        .Label {
+            display: inline-block;
+            padding: 0 7px;
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 18px;
+            border: 1px solid transparent;
+            border-radius: 2em;
+            background-color: var(--color-scale-gray-0);
+            border-color: var(--color-scale-gray-1);
+            margin-left: 8px;
+        }
+
+        /* Buttons */
+        .btn {
+            position: relative;
+            display: inline-block;
+            padding: 5px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 20px;
+            white-space: nowrap;
+            vertical-align: middle;
+            cursor: pointer;
+            user-select: none;
+            border: 1px solid;
+            border-radius: 6px;
+            appearance: none;
+            text-decoration: none;
+            transition: .2s cubic-bezier(0.3, 0, 0.5, 1);
+            transition-property: color,background-color,border-color;
+        }
+
+        .btn-primary {
+            color: #ffffff;
+            background-color: var(--color-btn-primary-bg);
+            border-color: var(--color-btn-primary-border);
+        }
+
+        .btn:hover {
+            background-color: var(--color-btn-hover-bg);
+            border-color: var(--color-btn-hover-border);
+            transition-duration: .1s;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 40px;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            border-top: 1px solid var(--color-border-muted);
+            text-align: center;
+            color: var(--color-fg-muted);
+            font-size: 12px;
+        }
+
+        .footer a {
+            color: var(--color-fg-muted);
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: var(--color-accent-fg);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .metrics-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .metric-large {
+                grid-column: span 1;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .metric-trend {
+                margin-top: 16px;
+            }
+        }
+
+        @media (max-width: 544px) {
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+<html lang="en" data-color-mode="auto" data-light-theme="light" data-dark-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OpenInnovate - Bridging Innovation and Implementation</title>
     <meta name="description" content="Uniting inventors, manufacturers, and the public to accelerate life-saving innovations.">
     <link rel="canonical" href="https://openinnovate.org">
