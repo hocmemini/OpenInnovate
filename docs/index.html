@@ -1,12 +1,12 @@
+<!DOCTYPE html>
 <html lang="en" data-color-mode="auto" data-light-theme="light" data-dark-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OpenInnovate - Decentralized Humanitarian Innovation Platform</title>
-    <meta name="description" content="Revolutionizing humanitarian innovation through decentralized markets and blockchain technology.">
+    <title>OpenInnovate - Humanitarian Innovation Platform</title>
+    <meta name="description" content="A decentralized platform uniting inventors, manufacturers, and the public to accelerate life-saving technology implementation.">
     <link rel="canonical" href="https://openinnovate.org">
     <style>
-        /* Light theme */
         :root {
             --color-canvas-default: #ffffff;
             --color-canvas-subtle: #f6f8fa;
@@ -20,13 +20,11 @@
             --color-btn-primary-bg: #2da44e;
             --color-btn-primary-hover-bg: #2c974b;
             --color-success-fg: #1a7f37;
-            --color-success-emphasis: #2da44e;
             --color-scale-gray-0: #f6f8fa;
             --color-scale-gray-1: #eaeef2;
             --color-chart-positive: #2da44e;
         }
 
-        /* Dark theme */
         [data-color-mode="dark"] {
             --color-canvas-default: #0d1117;
             --color-canvas-subtle: #161b22;
@@ -40,13 +38,11 @@
             --color-btn-primary-bg: #238636;
             --color-btn-primary-hover-bg: #2ea043;
             --color-success-fg: #3fb950;
-            --color-success-emphasis: #238636;
             --color-scale-gray-0: #161b22;
             --color-scale-gray-1: #21262d;
             --color-chart-positive: #238636;
         }
 
-        /* Base styles */
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
             line-height: 1.5;
@@ -54,9 +50,26 @@
             background-color: var(--color-canvas-default);
             margin: 0;
             font-size: 14px;
+            position: relative;
         }
 
-        /* Header */
+        .banner {
+            background: var(--color-btn-primary-bg);
+            color: white;
+            text-align: center;
+            padding: 8px;
+            font-weight: 600;
+        }
+
+        .banner a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .banner a:hover {
+            text-decoration: underline;
+        }
+
         .AppHeader {
             background-color: var(--color-header-bg);
             padding: 16px 0;
@@ -70,19 +83,6 @@
             padding: 0 16px;
         }
 
-        .AppHeader-title {
-            font-size: 24px;
-            font-weight: 600;
-            margin: 0;
-        }
-
-        .AppHeader-subtitle {
-            font-size: 16px;
-            color: var(--color-fg-muted);
-            margin-top: 4px;
-        }
-
-        /* Box components */
         .Box {
             background-color: var(--color-canvas-default);
             border: 1px solid var(--color-border-default);
@@ -109,10 +109,9 @@
             padding: 16px;
         }
 
-        /* Metrics */
         .metrics-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 16px;
             margin: 16px 0;
         }
@@ -123,7 +122,7 @@
             border-radius: 6px;
             padding: 16px;
             text-align: center;
-            transition: transform 0.2s ease-in-out;
+            transition: transform 0.2s;
         }
 
         .metric-box:hover {
@@ -134,7 +133,6 @@
             font-size: 24px;
             font-weight: 600;
             color: var(--color-fg-default);
-            line-height: 1.2;
         }
 
         .metric-label {
@@ -143,52 +141,7 @@
             margin-top: 4px;
         }
 
-        .metric-large {
-            grid-column: span 2;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 24px;
-        }
-
-        .metric-trend {
-            display: flex;
-            align-items: baseline;
-            color: var(--color-success-fg);
-        }
-
-        .metric-chart {
-            height: 40px;
-            margin-left: 16px;
-            display: flex;
-            align-items: flex-end;
-            gap: 2px;
-        }
-
-        .chart-bar {
-            width: 4px;
-            background-color: var(--color-chart-positive);
-            border-radius: 2px;
-            transition: height 0.3s ease-in-out;
-        }
-
-        /* Labels */
-        .Label {
-            display: inline-block;
-            padding: 0 7px;
-            font-size: 12px;
-            font-weight: 500;
-            line-height: 18px;
-            border: 1px solid transparent;
-            border-radius: 2em;
-            background-color: var(--color-scale-gray-0);
-            border-color: var(--color-scale-gray-1);
-            margin-left: 8px;
-        }
-
-        /* Buttons */
         .btn {
-            position: relative;
             display: inline-block;
             padding: 5px 16px;
             font-size: 14px;
@@ -204,21 +157,39 @@
             text-decoration: none;
             transition: .2s cubic-bezier(0.3, 0, 0.5, 1);
             transition-property: color,background-color,border-color;
+            color: var(--color-fg-default);
+            background-color: var(--color-canvas-default);
+            border-color: var(--color-border-default);
+        }
+
+        .btn:hover {
+            background-color: var(--color-canvas-subtle);
+            border-color: var(--color-border-muted);
+            text-decoration: none;
         }
 
         .btn-primary {
             color: #ffffff;
             background-color: var(--color-btn-primary-bg);
-            border-color: var(--color-btn-primary-border);
+            border-color: var(--color-border-default);
         }
 
-        .btn:hover {
-            background-color: var(--color-btn-hover-bg);
-            border-color: var(--color-btn-hover-border);
-            transition-duration: .1s;
+        .btn-primary:hover {
+            background-color: var(--color-btn-primary-hover-bg);
         }
 
-        /* Footer */
+        .Label {
+            display: inline-block;
+            padding: 0 7px;
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 18px;
+            border-radius: 2em;
+            background-color: var(--color-scale-gray-0);
+            border: 1px solid var(--color-scale-gray-1);
+            margin-left: 8px;
+        }
+
         .footer {
             margin-top: 40px;
             padding-top: 40px;
@@ -226,7 +197,6 @@
             border-top: 1px solid var(--color-border-muted);
             text-align: center;
             color: var(--color-fg-muted);
-            font-size: 12px;
         }
 
         .footer a {
@@ -238,20 +208,9 @@
             color: var(--color-accent-fg);
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .metrics-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .metric-large {
-                grid-column: span 1;
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .metric-trend {
-                margin-top: 16px;
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
@@ -261,31 +220,55 @@
             }
         }
     </style>
-<html lang="en" data-color-mode="auto" data-light-theme="light" data-dark-theme="dark">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OpenInnovate - Bridging Innovation and Implementation</title>
-    <meta name="description" content="Uniting inventors, manufacturers, and the public to accelerate life-saving innovations.">
-    <link rel="canonical" href="https://openinnovate.org">
-    [Previous CSS remains the same with dark mode support]
 </head>
 <body>
+    <div class="banner">
+        <a href="https://github.com/hocmemini/OpenInnovate">View Project on GitHub →</a>
+    </div>
+
     <div class="AppHeader">
         <div class="container">
             <h1 class="AppHeader-title">OpenInnovate Platform</h1>
-            <div class="AppHeader-subtitle">Accelerating Life-Saving Innovations Through Collaboration</div>
+            <div class="AppHeader-subtitle">Bridging Innovation and Implementation</div>
         </div>
     </div>
 
     <div class="container">
         <div class="Box">
             <div class="Box-header">
-                <h2 class="Box-title">Platform Mission</h2>
+                <h2 class="Box-title">MIT Digital Currency Initiative Research</h2>
             </div>
             <div class="Box-body">
-                <p>OpenInnovate bridges the gap between humanitarian innovation and real-world implementation by uniting inventors, manufacturers, and the public in accelerating life-saving technologies.</p>
-                <a href="docs/philosophy.md" class="btn">Read Our Philosophy</a>
+                <p>OpenInnovate represents a novel framework for accelerating humanitarian innovation through blockchain technology and aligned incentives. This research, in collaboration with MIT's Digital Currency Initiative, explores how decentralized systems can bridge the gap between innovation and implementation.</p>
+                <a href="https://github.com/hocmemini/OpenInnovate/blob/main/MIT-DCI-Humanitarian-Thesis.md" class="btn">Read Research Proposal</a>
+            </div>
+        </div>
+
+        <div class="Box">
+            <div class="Box-header">
+                <h2 class="Box-title">Technical Protocol</h2>
+                <span class="Label">RFC v1</span>
+            </div>
+            <div class="Box-body">
+                <div class="metrics-grid">
+                    <div class="metric-box">
+                        <div class="metric-value">Verification</div>
+                        <div class="metric-label">Impact & Implementation</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-value">Governance</div>
+                        <div class="metric-label">Community-Driven</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-value">Resource</div>
+                        <div class="metric-label">Optimization</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-value">Market</div>
+                        <div class="metric-label">Integration</div>
+                    </div>
+                </div>
+                <a href="https://github.com/hocmemini/OpenInnovate/blob/main/RFC-OpenInnovate-Protocol-v1.md" class="btn">Explore Protocol</a>
             </div>
         </div>
 
@@ -302,62 +285,15 @@
                     </div>
                     <div class="metric-box">
                         <div class="metric-value">7.3 yrs</div>
-                        <div class="metric-label">Avg Implementation Time</div>
+                        <div class="metric-label">Implementation Time</div>
                     </div>
                     <div class="metric-box">
                         <div class="metric-value">12%</div>
-                        <div class="metric-label">Traditional Success Rate</div>
+                        <div class="metric-label">Success Rate</div>
                     </div>
                     <div class="metric-box">
                         <div class="metric-value">23%</div>
-                        <div class="metric-label">Resource Utilization</div>
-                    </div>
-                </div>
-                <p class="color-fg-muted" style="font-size: 12px; text-align: right;">Source: Market Research Data 2023</p>
-            </div>
-        </div>
-
-        <div class="Box">
-            <div class="Box-header">
-                <h2 class="Box-title">Platform Benefits</h2>
-            </div>
-            <div class="Box-body">
-                <div class="metrics-grid">
-                    <div class="metric-box">
-                        <div class="metric-value">Manufacturers</div>
-                        <div class="metric-label">
-                            • Pre-validated innovations<br>
-                            • Reduced R&D risk<br>
-                            • Brand recognition<br>
-                            • Insurance incentives
-                        </div>
-                    </div>
-                    <div class="metric-box">
-                        <div class="metric-value">Innovators</div>
-                        <div class="metric-label">
-                            • Direct manufacturer access<br>
-                            • Built-in funding<br>
-                            • Technical support<br>
-                            • Implementation pathway
-                        </div>
-                    </div>
-                    <div class="metric-box">
-                        <div class="metric-value">Public</div>
-                        <div class="metric-label">
-                            • Support innovations<br>
-                            • Track impact<br>
-                            • Participate in development<br>
-                            • Access solutions faster
-                        </div>
-                    </div>
-                    <div class="metric-box">
-                        <div class="metric-value">Society</div>
-                        <div class="metric-label">
-                            • Faster implementation<br>
-                            • Better solutions<br>
-                            • Resource optimization<br>
-                            • Lives saved
-                        </div>
+                        <div class="metric-label">Resource Efficiency</div>
                     </div>
                 </div>
             </div>
@@ -365,55 +301,32 @@
 
         <div class="Box">
             <div class="Box-header">
-                <h2 class="Box-title">Key Documentation</h2>
+                <h2 class="Box-title">Reference Implementation</h2>
+                <span class="Label">Project Guardian</span>
             </div>
             <div class="Box-body">
-                <div class="metrics-grid">
-                    <div class="metric-box">
-                        <a href="docs/framework.md" style="text-decoration: none; color: inherit;">
-                            <div class="metric-value">Framework</div>
-                            <div class="metric-label">Implementation Process</div>
-                        </a>
-                    </div>
-                    <div class="metric-box">
-                        <a href="docs/technical.md" style="text-decoration: none; color: inherit;">
-                            <div class="metric-value">Technical</div>
-                            <div class="metric-label">Platform Architecture</div>
-                        </a>
-                    </div>
-                    <div class="metric-box">
-                        <a href="docs/contributing.md" style="text-decoration: none; color: inherit;">
-                            <div class="metric-value">Contribute</div>
-                            <div class="metric-label">Get Involved</div>
-                        </a>
-                    </div>
-                    <div class="metric-box">
-                        <a href="projects/README.md" style="text-decoration: none; color: inherit;">
-                            <div class="metric-value">Projects</div>
-                            <div class="metric-label">Active Innovations</div>
-                        </a>
-                    </div>
-                </div>
+                <p>Explore our first reference implementation demonstrating the platform's capabilities through revolutionary child safety technology.</p>
+                <a href="https://github.com/hocmemini/Project--Guardian" class="btn btn-primary">View Project Guardian</a>
             </div>
         </div>
 
         <div class="Box">
             <div class="Box-header">
-                <h2 class="Box-title">Get Started</h2>
+                <h2 class="Box-title">Platform Documentation</h2>
             </div>
             <div class="Box-body">
                 <div class="metrics-grid">
                     <div class="metric-box">
-                        <a href="docs/submission-guide.md" class="btn" style="width: 100%;">Submit Innovation</a>
+                        <a href="https://github.com/hocmemini/OpenInnovate#openinnovate-platform" class="btn" style="width: 100%;">Platform Overview</a>
                     </div>
                     <div class="metric-box">
-                        <a href="docs/manufacturer-guide.md" class="btn" style="width: 100%;">Manufacturer Portal</a>
+                        <a href="https://github.com/hocmemini/OpenInnovate/blob/main/MIT-DCI-Humanitarian-Thesis.md" class="btn" style="width: 100%;">Research Thesis</a>
                     </div>
                     <div class="metric-box">
-                        <a href="docs/contribution-guide.md" class="btn" style="width: 100%;">Contribute</a>
+                        <a href="https://github.com/hocmemini/OpenInnovate/blob/main/RFC-OpenInnovate-Protocol-v1.md" class="btn" style="width: 100%;">Technical Protocol</a>
                     </div>
                     <div class="metric-box">
-                        <a href="https://github.com/hocmemini/OpenInnovate/discussions" class="btn" style="width: 100%;">Join Discussion</a>
+                        <a href="https://github.com/hocmemini/Project--Guardian" class="btn" style="width: 100%;">Reference Implementation</a>
                     </div>
                 </div>
             </div>
@@ -423,11 +336,13 @@
             <p>OpenInnovate: Bridging innovation and implementation, one life-saving idea at a time.</p>
             <p><a href="mailto:collaborate@openinnovate.org">collaborate@openinnovate.org</a></p>
             <p>
-                <a href="docs/README.md">Documentation</a>
+                <a href="https://github.com/hocmemini/OpenInnovate">GitHub Repository</a>
                 &nbsp;&middot;&nbsp;
-                <a href="projects/README.md">Projects</a>
+                <a href="https://github.com/hocmemini/OpenInnovate/blob/main/MIT-DCI-Humanitarian-Thesis.md">Research Thesis</a>
                 &nbsp;&middot;&nbsp;
-                <a href="https://github.com/hocmemini/OpenInnovate">GitHub</a>
+                <a href="https://github.com/hocmemini/OpenInnovate/blob/main/RFC-OpenInnovate-Protocol-v1.md">Technical Protocol</a>
+                &nbsp;&middot;&nbsp;
+                <a href="https://github.com/hocmemini/Project--Guardian">Project Guardian</a>
             </p>
         </div>
     </div>
