@@ -106,10 +106,9 @@ OpenInnovate operates through:
 Every life-saving innovation that fails to reach implementation represents a preventable tragedy. OpenInnovate exists to ensure good ideas find their way to those who need them most.
 
 ### Connect With Us
-- Website: [openinnovate.org](https://openinnovate.org)
+- Website: [openinnovate.org](https://www.openinnovate.org)
 - Email: collaborate@openinnovate.org
 - Discussions: [GitHub Discussions](https://github.com/hocmemini/OpenInnovate/discussions)
-- Projects: [Active Innovations](projects/README.md)
 
 ## License
 
