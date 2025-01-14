@@ -1,178 +1,333 @@
-<html lang="en">
+<html lang="en" data-color-mode="auto" data-light-theme="light" data-dark-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OpenInnovate Platform</title>
+    <title>OpenInnovate | Project Guardian</title>
+    <meta name="description" content="Decentralized markets for humanitarian innovation. Saving 200,000 lives annually through open-source technology.">
+    <link rel="canonical" href="https://openinnovate.org">
     <style>
         :root {
-            --color-bg: #ffffff;
-            --color-text: #24292e;
-            --color-border: #e1e4e8;
-            --color-link: #0366d6;
-            --color-heading: #24292e;
-            --color-secondary: #586069;
+            /* Light theme variables */
+            --color-canvas-default: #ffffff;
+            --color-canvas-subtle: #f6f8fa;
+            --color-border-default: #d0d7de;
+            --color-border-muted: #d8dee4;
+            --color-accent-fg: #0969da;
+            --color-fg-default: #24292f;
+            --color-fg-muted: #57606a;
+            --color-header-bg: #24292f;
+            --color-header-text: #ffffff;
+            --color-btn-primary-bg: #2da44e;
+            --color-btn-primary-hover-bg: #2c974b;
+            --color-scale-gray-0: #f6f8fa;
+            --color-scale-gray-1: #eaeef2;
+        }
+
+        [data-color-mode="dark"] {
+            /* Dark theme variables */
+            --color-canvas-default: #0d1117;
+            --color-canvas-subtle: #161b22;
+            --color-border-default: #30363d;
+            --color-border-muted: #21262d;
+            --color-accent-fg: #58a6ff;
+            --color-fg-default: #c9d1d9;
+            --color-fg-muted: #8b949e;
+            --color-header-bg: #161b22;
+            --color-header-text: #f0f6fc;
+            --color-btn-primary-bg: #238636;
+            --color-btn-primary-hover-bg: #2ea043;
+            --color-scale-gray-0: #161b22;
+            --color-scale-gray-1: #21262d;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            color: var(--color-text);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+            line-height: 1.5;
+            color: var(--color-fg-default);
+            background-color: var(--color-canvas-default);
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .AppHeader {
+            background-color: var(--color-header-bg);
+            padding: 16px 0;
+            color: var(--color-header-text);
+            margin-bottom: 24px;
+        }
+
+        .container {
             max-width: 1012px;
             margin: 0 auto;
-            padding: 32px 16px;
-            background: var(--color-bg);
+            padding: 0 16px;
         }
 
-        .header {
-            border-bottom: 1px solid var(--color-border);
-            padding-bottom: 24px;
-            margin-bottom: 24px;
-        }
-
-        h1 {
-            font-size: 32px;
-            margin-bottom: 8px;
-            color: var(--color-heading);
-        }
-
-        h2 {
-            font-size: 24px;
-            margin-top: 32px;
-            margin-bottom: 16px;
-            color: var(--color-heading);
-        }
-
-        h3 {
+        .AppHeader-title {
             font-size: 20px;
-            margin-top: 24px;
-            color: var(--color-heading);
+            font-weight: 600;
+            margin: 0;
         }
 
-        a {
-            color: var(--color-link);
-            text-decoration: none;
+        .AppHeader-subtitle {
+            font-size: 14px;
+            color: var(--color-fg-muted);
+            margin-top: 4px;
         }
 
-        a:hover {
-            text-decoration: underline;
-        }
-
-        .description {
-            font-size: 16px;
-            color: var(--color-secondary);
-            margin-bottom: 24px;
-        }
-
-        .section {
-            margin-bottom: 32px;
-            padding: 24px;
-            border: 1px solid var(--color-border);
+        .Box {
+            background-color: var(--color-canvas-default);
+            border: 1px solid var(--color-border-default);
             border-radius: 6px;
+            margin-bottom: 16px;
         }
 
-        .metrics {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-            margin: 24px 0;
-        }
-
-        .metric {
+        .Box-header {
+            background-color: var(--color-canvas-subtle);
+            border-bottom: 1px solid var(--color-border-default);
             padding: 16px;
-            border: 1px solid var(--color-border);
+            display: flex;
+            align-items: center;
+        }
+
+        .Box-title {
+            font-size: 14px;
+            font-weight: 600;
+            flex: 1;
+            margin: 0;
+        }
+
+        .Box-body {
+            padding: 16px;
+        }
+
+        .Label {
+            display: inline-block;
+            padding: 0 7px;
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 18px;
+            border: 1px solid transparent;
+            border-radius: 2em;
+            background-color: var(--color-scale-gray-0);
+            border-color: var(--color-scale-gray-1);
+            margin-left: 8px;
+        }
+
+        .btn {
+            position: relative;
+            display: inline-block;
+            padding: 5px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 20px;
+            white-space: nowrap;
+            vertical-align: middle;
+            cursor: pointer;
+            user-select: none;
+            border: 1px solid;
             border-radius: 6px;
+            appearance: none;
+            text-decoration: none;
+            background-color: var(--color-btn-bg);
+            border-color: var(--color-btn-border);
+            color: var(--color-btn-text);
+            box-shadow: var(--color-btn-shadow),var(--color-btn-inset-shadow);
+            transition: .2s cubic-bezier(0.3, 0, 0.5, 1);
+            transition-property: color,background-color,border-color;
+        }
+
+        .btn-primary {
+            color: #ffffff;
+            background-color: var(--color-btn-primary-bg);
+            border-color: var(--color-btn-primary-border);
+        }
+
+        .btn:hover {
+            background-color: var(--color-btn-hover-bg);
+            border-color: var(--color-btn-hover-border);
+            transition-duration: .1s;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 16px 0;
+        }
+
+        .metric-box {
+            background-color: var(--color-canvas-subtle);
+            border: 1px solid var(--color-border-muted);
+            border-radius: 6px;
+            padding: 16px;
             text-align: center;
         }
 
         .metric-value {
             font-size: 24px;
             font-weight: 600;
-            color: var(--color-heading);
+            color: var(--color-fg-default);
+            line-height: 1.2;
         }
 
         .metric-label {
-            font-size: 14px;
-            color: var(--color-secondary);
+            font-size: 12px;
+            color: var(--color-fg-muted);
+            margin-top: 4px;
         }
 
-        .quote {
-            font-style: italic;
-            padding: 24px;
-            background-color: #f6f8fa;
-            border-radius: 6px;
-            margin: 24px 0;
+        .color-fg-muted {
+            color: var(--color-fg-muted) !important;
+        }
+
+        .markdown-body {
+            font-size: 14px;
+            line-height: 1.5;
+            word-wrap: break-word;
+        }
+
+        .markdown-body blockquote {
+            padding: 0 1em;
+            color: var(--color-fg-muted);
+            border-left: .25em solid var(--color-border-default);
+            margin: 16px 0;
+        }
+
+        .footer {
+            margin-top: 40px;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            border-top: 1px solid var(--color-border-muted);
+            text-align: center;
+            color: var(--color-fg-muted);
+            font-size: 12px;
+        }
+
+        .footer a {
+            color: var(--color-fg-muted);
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: var(--color-accent-fg);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .metrics-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 544px) {
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>OpenInnovate Platform</h1>
-        <p class="description">Decentralized Markets for Humanitarian Innovation</p>
-    </div>
-
-    <div class="section">
-        <h2>About</h2>
-        <p>OpenInnovate is a blockchain-based platform for accelerating humanitarian innovation deployment. Through decentralized markets and impact verification, we bridge the gap between innovation and implementation.</p>
-        <p>View the complete repository at <a href="https://github.com/hocmemini/OpenInnovate">github.com/hocmemini/OpenInnovate</a></p>
-    </div>
-
-    <div class="section">
-        <h2>Reference Implementation</h2>
-        <p>Project Guardian demonstrates the platform's capabilities, showing potential to save over 200,000 lives annually through revolutionary child safety technology.</p>
-        <p>Explore Project Guardian at <a href="https://github.com/hocmemini/Project--Guardian">github.com/hocmemini/Project--Guardian</a></p>
-    </div>
-
-    <div class="section">
-        <h2>Key Metrics</h2>
-        <div class="metrics">
-            <div class="metric">
-                <div class="metric-value">200,000+</div>
-                <div class="metric-label">Lives Saved Annually</div>
-            </div>
-            <div class="metric">
-                <div class="metric-value">$37B</div>
-                <div class="metric-label">Economic Impact</div>
-            </div>
-            <div class="metric">
-                <div class="metric-value">147</div>
-                <div class="metric-label">Countries Reached</div>
-            </div>
-            <div class="metric">
-                <div class="metric-value">24mo</div>
-                <div class="metric-label">Implementation Timeline</div>
-            </div>
+    <div class="AppHeader">
+        <div class="container">
+            <h1 class="AppHeader-title">OpenInnovate</h1>
+            <div class="AppHeader-subtitle">Decentralized markets for humanitarian innovation</div>
         </div>
     </div>
 
-    <div class="quote">
-        "Every 16 seconds, somewhere in the world, a parent loses a child in a preventable accident. The technology to change this exists today. What we lack isn't innovation – it's implementation."
-    </div>
+    <div class="container">
+        <div class="Box">
+            <div class="Box-header">
+                <h2 class="Box-title">About</h2>
+            </div>
+            <div class="Box-body markdown-body">
+                <p>OpenInnovate is a blockchain-based platform accelerating humanitarian innovation deployment through decentralized markets and impact verification. Our first initiative, Project Guardian, aims to save over 200,000 lives annually through revolutionary child safety technology.</p>
+                <a href="https://github.com/hocmemini/OpenInnovate" class="btn" target="_blank">View on GitHub</a>
+            </div>
+        </div>
 
-    <div class="section">
-        <h2>Key Components</h2>
-        <h3>OpenInnovate Protocol</h3>
-        <p>Technical specification for decentralized innovation markets, impact verification, and rights management.</p>
-        
-        <h3>Academic Framework</h3>
-        <p>Theoretical foundation, implementation science, and validation methodology.</p>
-        
-        <h3>Technical Implementation</h3>
-        <p>Blockchain architecture, smart contracts, and validation frameworks.</p>
-    </div>
+        <div class="Box">
+            <div class="Box-header">
+                <h2 class="Box-title">Project Guardian</h2>
+                <span class="Label">Reference Implementation</span>
+            </div>
+            <div class="Box-body markdown-body">
+                <p>A revolutionary child safety system integrating with Tesla's sensor networks and SpaceX materials science to create unprecedented protection for our most vulnerable passengers.</p>
+                <a href="https://github.com/hocmemini/Project--Guardian" class="btn btn-primary" target="_blank">Explore Project Guardian</a>
+            </div>
+        </div>
 
-    <div class="section">
-        <h2>Getting Started</h2>
-        <ol>
-            <li>Review the <a href="https://github.com/hocmemini/OpenInnovate/tree/main/RFC">OpenInnovate Protocol RFC</a></li>
-            <li>Explore <a href="https://github.com/hocmemini/Project--Guardian">Project Guardian</a></li>
-            <li>Study the technical implementation guides</li>
-            <li>Examine the academic framework</li>
-        </ol>
-    </div>
+        <div class="Box">
+            <div class="Box-header">
+                <h2 class="Box-title">Impact Metrics</h2>
+            </div>
+            <div class="Box-body">
+                <div class="metrics-grid">
+                    <div class="metric-box">
+                        <div class="metric-value">200,000+</div>
+                        <div class="metric-label">Lives Saved Annually</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-value">$37B</div>
+                        <div class="metric-label">Economic Impact</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-value">147</div>
+                        <div class="metric-label">Countries Reached</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-value">24mo</div>
+                        <div class="metric-label">Implementation Timeline</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <div class="section">
-        <h2>Contributing</h2>
-        <p>This is an open humanitarian initiative. Contributions are welcome in protocol development, technical implementation, impact verification, economic modeling, and implementation science.</p>
+        <div class="Box">
+            <div class="Box-header">
+                <h2 class="Box-title">Core Mission</h2>
+            </div>
+            <div class="Box-body markdown-body">
+                <blockquote>
+                    <p>Every 16 seconds, somewhere in the world, a parent loses a child in a preventable accident. The technology to change this exists today. What we lack isn't innovation – it's implementation.</p>
+                </blockquote>
+            </div>
+        </div>
+
+        <div class="Box">
+            <div class="Box-header">
+                <h2 class="Box-title">Get Started</h2>
+            </div>
+            <div class="Box-body markdown-body">
+                <ol>
+                    <li>Review the <a href="https://github.com/hocmemini/OpenInnovate/tree/main/RFC">OpenInnovate Protocol RFC</a></li>
+                    <li>Explore <a href="https://github.com/hocmemini/Project--Guardian">Project Guardian</a></li>
+                    <li>Study the technical implementation guides</li>
+                    <li>Join the development community</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="Box">
+            <div class="Box-header">
+                <h2 class="Box-title">Get Involved</h2>
+            </div>
+            <div class="Box-body">
+                <p>Help us accelerate humanitarian innovation deployment. Every contribution brings us closer to saving more lives.</p>
+                <a href="mailto:collaborate@openinnovate.org" class="btn btn-primary">Contact Us</a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>
+                <span class="color-fg-muted">OpenInnovate.org &nbsp;&middot;&nbsp;</span>
+                <a href="mailto:collaborate@openinnovate.org">collaborate@openinnovate.org</a>
+            </p>
+            <p>
+                <a href="https://github.com/hocmemini/OpenInnovate">GitHub</a>
+                &nbsp;&middot;&nbsp;
+                <a href="https://github.com/hocmemini/Project--Guardian">Project Guardian</a>
+            </p>
+        </div>
     </div>
 </body>
 </html>
