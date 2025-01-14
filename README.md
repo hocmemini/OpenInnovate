@@ -34,17 +34,13 @@ To democratize the development and implementation of humanitarian innovations by
 
 ## Documentation
 
-- [Platform Philosophy](docs/philosophy.md)
-- [Implementation Framework](docs/framework.md)
-- [Technical Architecture](docs/technical.md)
-- [Contribution Guide](docs/contributing.md)
-- [Impact Metrics](docs/metrics.md)
+- [Platform Philosophy](philosophy/philosophy.md)
+- [Platform Framework](platform/platform.md)
 
 ## Active Projects
 
 - [Project Guardian](projects/guardian/README.md) - Revolutionary child safety system
-- [View All Projects](projects/README.md)
-
+- 
 ## Key Features
 
 ### Innovation Validation
@@ -71,22 +67,14 @@ To democratize the development and implementation of humanitarian innovations by
 ## Getting Started
 
 ### For Innovators
-1. Review [Submission Guidelines](docs/submission-guide.md)
-2. Explore [Current Projects](projects/README.md)
-3. Understand [Validation Process](docs/validation.md)
-4. Submit Your Innovation
+1. Understand [Validation Process](platform/validation.md)
+2. Submit Your Innovation
 
 ### For Manufacturers
-1. Review [Participation Framework](docs/manufacturer-guide.md)
-2. Explore [Implementation Benefits](docs/benefits.md)
-3. Register [Manufacturing Capabilities](docs/capabilities.md)
-4. Engage with Projects
+1. Review [Participation Framework](platform/platform.md)
+2. Engage with Projects
 
 ### For Contributors
-1. Read [Contribution Guidelines](CONTRIBUTING.md)
-2. Review [Technical Documentation](docs/technical.md)
-3. Join [Community Discussion](https://github.com/hocmemini/OpenInnovate/discussions)
-4. Submit Pull Requests
 
 ## Platform Metrics
 (Source: Market Research 2023)
