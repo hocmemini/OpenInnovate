@@ -9,191 +9,152 @@
     <style>
         :root {
             --color-canvas-default: #ffffff;
-            --color-canvas-subtle: #636363;
-            --color-border-default: #2B2B2B;
-            --color-border-muted: #636363;
-            --color-accent-fg: #2B2B2B;
-            --color-fg-default: #1a1a1a;
-            --color-fg-muted: #636363;
-            --color-header-bg: #1a1a1a;
+            --color-canvas-subtle: #f8f9fa;
+            --color-border-default: #e9ecef;
+            --color-border-muted: #dee2e6;
+            --color-accent-fg: #495057;
+            --color-fg-default: #212529;
+            --color-fg-muted: #6c757d;
+            --color-header-bg: #343a40;
             --color-header-text: #ffffff;
-            --color-btn-primary-bg: #2B2B2B;
-            --color-btn-primary-hover-bg: #636363;
-            --color-success-fg: #636363;
-            --color-scale-gray-0: #636363;
-            --color-scale-gray-1: #2B2B2B;
+            --color-btn-primary-bg: #495057;
+            --color-btn-primary-hover-bg: #6c757d;
+            --radius: 12px;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
         }
 
         [data-color-mode="dark"] {
-            --color-canvas-default: #1a1a1a;
-            --color-canvas-subtle: #2B2B2B;
-            --color-border-default: #636363;
-            --color-border-muted: #2B2B2B;
-            --color-accent-fg: #ffffff;
-            --color-fg-default: #ffffff;
-            --color-fg-muted: #636363;
-            --color-header-bg: #000000;
-            --color-header-text: #ffffff;
-            --color-btn-primary-bg: #636363;
-            --color-btn-primary-hover-bg: #2B2B2B;
-            --color-success-fg: #636363;
-            --color-scale-gray-0: #2B2B2B;
-            --color-scale-gray-1: #636363;
+            --color-canvas-default: #212529;
+            --color-canvas-subtle: #343a40;
+            --color-border-default: #495057;
+            --color-border-muted: #6c757d;
+            --color-accent-fg: #f8f9fa;
+            --color-fg-default: #f8f9fa;
+            --color-fg-muted: #adb5bd;
+            --color-header-bg: #1a1e21;
+            --color-btn-primary-bg: #6c757d;
+            --color-btn-primary-hover-bg: #495057;
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
-            line-height: 1.5;
+            line-height: 1.6;
             color: var(--color-fg-default);
             background-color: var(--color-canvas-default);
             margin: 0;
-            font-size: 14px;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px 0;
-        }
-
-        .logo {
-            max-width: 200px;
-            height: auto;
+            font-size: 16px;
         }
 
         .AppHeader {
-            background: linear-gradient(to right, #000000, #2B2B2B);
-            padding: 16px 0;
+            background-color: var(--color-header-bg);
+            padding: 2rem 0;
             color: var(--color-header-text);
-            margin-bottom: 24px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-md);
         }
 
         .container {
-            max-width: 1012px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 16px;
+            padding: 0 2rem;
         }
 
-        .Box {
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
             background-color: var(--color-canvas-default);
             border: 1px solid var(--color-border-default);
-            border-radius: 8px;
-            margin-bottom: 24px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            transition: transform 0.2s ease-in-out;
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: var(--transition);
         }
 
-        .Box:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
         }
 
-        .Box-header {
-            background: linear-gradient(to right, var(--color-canvas-subtle), var(--color-border-default));
-            border-bottom: 1px solid var(--color-border-default);
-            padding: 16px;
-            border-top-left-radius: 8px;
-            border-top-right-radius: 8px;
+        .card-header {
+            background-color: var(--color-canvas-subtle);
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--color-border-muted);
         }
 
-        .Box-title {
-            font-size: 16px;
+        .card-title {
+            font-size: 1.25rem;
             font-weight: 600;
             margin: 0;
-            color: var(--color-header-text);
+            color: var(--color-fg-default);
         }
 
-        .Box-body {
-            padding: 24px;
+        .card-body {
+            padding: 1.5rem;
         }
 
         .metrics-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 24px;
-            margin: 24px 0;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
         }
 
         .metric-box {
-            background: linear-gradient(145deg, var(--color-canvas-default), var(--color-canvas-subtle));
-            border: 1px solid var(--color-border-muted);
-            border-radius: 8px;
-            padding: 24px;
+            background-color: var(--color-canvas-subtle);
+            border-radius: calc(var(--radius) - 4px);
+            padding: 1.25rem;
             text-align: center;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
         .metric-box:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+            background-color: var(--color-canvas-default);
+            box-shadow: var(--shadow-sm);
         }
 
         .metric-value {
-            font-size: 28px;
+            font-size: 1.5rem;
             font-weight: 600;
             color: var(--color-fg-default);
-            margin-bottom: 8px;
+            margin-bottom: 0.5rem;
         }
 
         .metric-label {
-            font-size: 14px;
+            font-size: 0.875rem;
             color: var(--color-fg-muted);
-            line-height: 1.4;
         }
 
         .btn {
             display: inline-block;
-            padding: 8px 20px;
-            font-size: 14px;
+            padding: 0.75rem 1.5rem;
+            font-size: 0.875rem;
             font-weight: 500;
-            line-height: 20px;
-            white-space: nowrap;
-            vertical-align: middle;
-            cursor: pointer;
-            user-select: none;
-            border: 1px solid var(--color-border-default);
-            border-radius: 6px;
-            appearance: none;
+            text-align: center;
             text-decoration: none;
-            transition: all 0.2s cubic-bezier(0.3, 0, 0.5, 1);
-            background: linear-gradient(145deg, var(--color-btn-primary-bg), var(--color-border-default));
             color: var(--color-header-text);
+            background-color: var(--color-btn-primary-bg);
+            border: none;
+            border-radius: calc(var(--radius) - 4px);
+            transition: var(--transition);
+            cursor: pointer;
         }
 
         .btn:hover {
+            background-color: var(--color-btn-primary-hover-bg);
             transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            background: linear-gradient(145deg, var(--color-btn-primary-hover-bg), var(--color-border-muted));
-        }
-
-        .comparison-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-            margin: 24px 0;
-        }
-
-        .comparison-box {
-            background: linear-gradient(145deg, var(--color-canvas-default), var(--color-canvas-subtle));
-            border: 1px solid var(--color-border-muted);
-            border-radius: 8px;
-            padding: 20px;
-        }
-
-        .comparison-title {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: var(--color-fg-default);
         }
 
         .footer {
-            margin-top: 60px;
-            padding: 40px 0;
-            background: linear-gradient(to right, #000000, #2B2B2B);
+            background-color: var(--color-header-bg);
             color: var(--color-header-text);
+            padding: 3rem 0;
+            margin-top: 4rem;
             text-align: center;
         }
 
@@ -204,16 +165,18 @@
         }
 
         .footer a:hover {
-            color: var(--color-canvas-subtle);
+            opacity: 0.8;
         }
 
         @media (max-width: 768px) {
-            .metrics-grid, .comparison-grid {
+            .card-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .Box {
-                margin: 16px;
+            .metrics-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+            .container {
+                padding: 0 1rem;
             }
         }
     </style>
@@ -221,108 +184,93 @@
 <body>
     <div class="AppHeader">
         <div class="container">
-            <div class="logo-container">
-                <img src="./logo.jpg" alt="OpenInnovate Logo" class="logo">
+            <div style="text-align: center;">
+                <img src="./logo.jpg" alt="OpenInnovate Logo" style="max-width: 200px; height: auto;">
+                <h1 style="margin: 1rem 0 0.5rem;">OpenInnovate Platform</h1>
+                <p style="margin: 0;">Bridging Innovation and Implementation</p>
             </div>
-            <h1 class="AppHeader-title">OpenInnovate Platform</h1>
-            <div class="AppHeader-subtitle">Bridging Innovation and Implementation</div>
         </div>
     </div>
 
     <div class="container">
-        <div class="Box">
-            <div class="Box-header">
-                <h2 class="Box-title">MIT Digital Currency Initiative Research</h2>
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">MIT DCI Research</h2>
+                </div>
+                <div class="card-body">
+                    <p>OpenInnovate represents a novel framework for accelerating humanitarian innovation through blockchain technology and aligned incentives.</p>
+                    <a href="MIT-DCI-OpenInnovate-Proposal.md" class="btn">Read Proposal</a>
+                </div>
             </div>
-            <div class="Box-body">
-                <p>OpenInnovate represents a novel framework for accelerating humanitarian innovation through blockchain technology and aligned incentives. This research, in collaboration with MIT's Digital Currency Initiative, explores how decentralized systems can bridge the gap between innovation and implementation.</p>
-                <a href="https://github.com/hocmemini/OpenInnovate/blob/main/MIT-DCI-OpenInnovate-Proposal.md" class="btn">Read Research Proposal</a>
-            </div>
-        </div>
 
-        <div class="Box">
-            <div class="Box-header">
-                <h2 class="Box-title">Technical Protocol</h2>
-                <span class="Label">RFC v1</span>
-            </div>
-            <div class="Box-body">
-                <div class="metrics-grid">
-                    <div class="metric-box">
-                        <div class="metric-value">Verification</div>
-                        <div class="metric-label">Impact & Implementation</div>
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Technical Protocol</h2>
+                </div>
+                <div class="card-body">
+                    <div class="metrics-grid">
+                        <div class="metric-box">
+                            <div class="metric-value">Verification</div>
+                            <div class="metric-label">Impact & Implementation</div>
+                        </div>
+                        <div class="metric-box">
+                            <div class="metric-value">Governance</div>
+                            <div class="metric-label">Community-Driven</div>
+                        </div>
                     </div>
-                    <div class="metric-box">
-                        <div class="metric-value">Governance</div>
-                        <div class="metric-label">Community-Driven</div>
-                    </div>
-                    <div class="metric-box">
-                        <div class="metric-value">Resource</div>
-                        <div class="metric-label">Optimization</div>
-                    </div>
-                    <div class="metric-box">
-                        <div class="metric-value">Market</div>
-                        <div class="metric-label">Integration</div>
+                    <div style="text-align: center; margin-top: 1.5rem;">
+                        <a href="RFC: OpenInnovate Protocol.md" class="btn">Explore Protocol</a>
                     </div>
                 </div>
-                <a href="https://github.com/hocmemini/OpenInnovate/blob/main/RFC: OpenInnovate Protocol.md" class="btn">Explore Protocol</a>
             </div>
-        </div>
 
-        <div class="Box">
-            <div class="Box-header">
-                <h2 class="Box-title">Innovation Gap</h2>
-                <span class="Label">2023 Data</span>
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Innovation Gap</h2>
+                </div>
+                <div class="card-body">
+                    <div class="metrics-grid">
+                        <div class="metric-box">
+                            <div class="metric-value">$2.5T</div>
+                            <div class="metric-label">Global Gap</div>
+                        </div>
+                        <div class="metric-box">
+                            <div class="metric-value">7.3 yrs</div>
+                            <div class="metric-label">Implementation Time</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="Box-body">
-                <div class="metrics-grid">
-                    <div class="metric-box">
-                        <div class="metric-value">$2.5T</div>
-                        <div class="metric-label">Global Innovation Gap</div>
-                    </div>
-                    <div class="metric-box">
-                        <div class="metric-value">7.3 yrs</div>
-                        <div class="metric-label">Implementation Time</div>
-                    </div>
-                    <div class="metric-box">
-                        <div class="metric-value">12%</div>
-                        <div class="metric-label">Success Rate</div>
-                    </div>
-                    <div class="metric-box">
-                        <div class="metric-value">23%</div>
-                        <div class="metric-label">Resource Efficiency</div>
-                    </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Project Guardian</h2>
+                </div>
+                <div class="card-body">
+                    <p>Explore our first reference implementation demonstrating revolutionary child safety technology.</p>
+                    <a href="projects/Project--Guardian" class="btn">View Project</a>
                 </div>
             </div>
         </div>
 
-        <div class="Box">
-            <div class="Box-header">
-                <h2 class="Box-title">Reference Implementation</h2>
-                <span class="Label">Project Guardian</span>
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Documentation</h2>
             </div>
-            <div class="Box-body">
-                <p>Explore our first reference implementation demonstrating the platform's capabilities through revolutionary child safety technology.</p>
-                <a href="https://github.com/hocmemini/Project--Guardian" class="btn btn-primary">View Project Guardian</a>
-            </div>
-        </div>
-
-        <div class="Box">
-            <div class="Box-header">
-                <h2 class="Box-title">Platform Documentation</h2>
-            </div>
-            <div class="Box-body">
+            <div class="card-body">
                 <div class="metrics-grid">
                     <div class="metric-box">
-                        <a href="https://github.com/hocmemini/OpenInnovate#openinnovate-platform" class="btn" style="width: 100%;">Platform Overview</a>
+                        <a href="README.md" class="btn" style="width: 100%;">Overview</a>
                     </div>
                     <div class="metric-box">
-                        <a href="https://github.com/hocmemini/OpenInnovate/blob/main/MIT-DCI-OpenInnovate-Proposal.md" class="btn" style="width: 100%;">Research Thesis</a>
+                        <a href="docs/platform" class="btn" style="width: 100%;">Platform Docs</a>
                     </div>
                     <div class="metric-box">
-                        <a href="https://github.com/hocmemini/OpenInnovate/blob/main/RFC: OpenInnovate Protocol.md" class="btn" style="width: 100%;">Technical Protocol</a>
+                        <a href="philosophy" class="btn" style="width: 100%;">Philosophy</a>
                     </div>
                     <div class="metric-box">
-                        <a href="https://github.com/hocmemini/Project--Guardian" class="btn" style="width: 100%;">Reference Implementation</a>
+                        <a href="projects" class="btn" style="width: 100%;">Projects</a>
                     </div>
                 </div>
             </div>
@@ -332,9 +280,9 @@
             <p>OpenInnovate: Bridging innovation and implementation, one life-saving idea at a time.</p>
             <p><a href="mailto:collaborate@openinnovate.org">collaborate@openinnovate.org</a></p>
             <p>
-                <a href="https://github.com/hocmemini/OpenInnovate">GitHub Repository</a>
+                <a href="./">GitHub Repository</a>
                 &nbsp;&middot;&nbsp;
-                <a href="https://github.com/hocmemini/Project--Guardian">Project Guardian</a>
+                <a href="projects/Project--Guardian">Project Guardian</a>
             </p>
         </div>
     </div>
