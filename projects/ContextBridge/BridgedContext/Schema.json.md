@@ -5,7 +5,7 @@
 3. AI processes the context
 4. Continues development with awareness
 
-,,,{
+'''{
     "session_metadata": {
         "project": "project_name",
         "timestamp": "ISO-8601",
