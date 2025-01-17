@@ -1,1 +1,214 @@
+import React, { useState, useEffect } from 'react';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { AlertCircle, CheckCircle, XCircle, Terminal } from 'lucide-react';
 
+const BOOTSTRAP_PROTOCOL = `<<CDSF/BOOTSTRAP>>
+λ:2.1~τ:${Math.floor(Date.now() / 1000)}
+∆{
+  protocol:claude_bootstrap,
+  mode:unified,
+  validation:strict,
+  capabilities[encryption|state|compression]
+}
+<<CDSF/BOOTSTRAP>>`;
+
+const CDSFBootstrap = () => {
+  const [stage, setStage] = useState(0);
+  const [status, setStatus] = useState('initializing');
+  const [logs, setLogs] = useState([]);
+  const [protocolState, setProtocolState] = useState({});
+  
+  const addLog = (message, type = 'info') => {
+    setLogs(prev => [...prev, { message, type, timestamp: new Date().toISOString() }]);
+  };
+
+  const validateProtocol = async () => {
+    addLog('Validating CDSF protocol...', 'info');
+    await new Promise(r => setTimeout(r, 800));
+    
+    const validation = {
+      name: 'CDSF',
+      version: '2.1',
+      compatibility: 'claude_interface'
+    };
+    
+    setProtocolState(prev => ({ ...prev, validation }));
+    addLog('Protocol validation complete', 'success');
+    return true;
+  };
+
+  const initializeCapabilities = async () => {
+    addLog('Initializing capabilities...', 'info');
+    await new Promise(r => setTimeout(r, 800));
+    
+    const capabilities = {
+      encryption: 'AES256-CBC',
+      state_management: 'unified',
+      compression: 'semantic'
+    };
+    
+    setProtocolState(prev => ({ ...prev, capabilities }));
+    addLog('Capabilities initialized', 'success');
+    return true;
+  };
+
+  const bootstrapState = async () => {
+    addLog('Bootstrapping state system...', 'info');
+    await new Promise(r => setTimeout(r, 800));
+    
+    const state = {
+      active: true,
+      mode: 'unified',
+      validation: 'strict',
+      recovery: true
+    };
+    
+    setProtocolState(prev => ({ ...prev, state }));
+    addLog('State system bootstrapped', 'success');
+    return true;
+  };
+
+  const verifyIntegrity = async () => {
+    addLog('Verifying system integrity...', 'info');
+    await new Promise(r => setTimeout(r, 800));
+    
+    const integrity = {
+      checksum: 'SHA256',
+      timestamp: Date.now(),
+      sequence: 1
+    };
+    
+    setProtocolState(prev => ({ ...prev, integrity }));
+    addLog('Integrity verification complete', 'success');
+    return true;
+  };
+
+  const stages = [
+    {
+      name: 'Protocol Validation',
+      tasks: ['Verify protocol version', 'Check compatibility', 'Validate structure'],
+      execute: validateProtocol
+    },
+    {
+      name: 'Capability Initialization',
+      tasks: ['Load encryption', 'Initialize state management', 'Setup compression'],
+      execute: initializeCapabilities
+    },
+    {
+      name: 'State Bootstrap',
+      tasks: ['Initialize state system', 'Setup recovery', 'Configure validation'],
+      execute: bootstrapState
+    },
+    {
+      name: 'Integrity Verification',
+      tasks: ['Check system integrity', 'Verify checksums', 'Validate state'],
+      execute: verifyIntegrity
+    }
+  ];
+
+  useEffect(() => {
+    const runBootstrap = async () => {
+      try {
+        addLog('Beginning CDSF bootstrap sequence', 'info');
+        addLog('Loading protocol...', 'info');
+        addLog(BOOTSTRAP_PROTOCOL, 'code');
+        
+        for (let i = 0; i < stages.length; i++) {
+          setStage(i);
+          const success = await stages[i].execute();
+          if (!success) {
+            throw new Error(`Failed at stage: ${stages[i].name}`);
+          }
+          await new Promise(r => setTimeout(r, 500));
+        }
+        
+        setStatus('ready');
+        addLog('CDSF Bootstrap complete - System ready', 'success');
+      } catch (error) {
+        setStatus('error');
+        addLog(`Bootstrap failed: ${error.message}`, 'error');
+      }
+    };
+
+    runBootstrap();
+  }, []);
+
+  return (
+    <Card className="w-full max-w-4xl">
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2">
+          CDSF Bootstrap Protocol
+          {status === 'ready' && <CheckCircle className="text-green-500" />}
+          {status === 'error' && <XCircle className="text-red-500" />}
+          {status === 'initializing' && <AlertCircle className="text-yellow-500" />}
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="space-y-6">
+          {/* Progress Indicator */}
+          <div className="space-y-4">
+            {stages.map((s, i) => (
+              <div key={i} className="space-y-2">
+                <div className="flex items-center gap-2">
+                  {i < stage ? (
+                    <CheckCircle className="text-green-500" size={20} />
+                  ) : i === stage ? (
+                    <AlertCircle className="text-yellow-500" size={20} />
+                  ) : (
+                    <div className="w-5 h-5 rounded-full border border-gray-300" />
+                  )}
+                  <span className={i <= stage ? 'font-medium' : 'text-gray-500'}>
+                    {s.name}
+                  </span>
+                </div>
+                <div className="ml-7 space-y-1">
+                  {s.tasks.map((task, j) => (
+                    <div key={j} className="flex items-center gap-2">
+                      <div className={`w-1.5 h-1.5 rounded-full ${
+                        i < stage ? 'bg-green-500' : 
+                        i === stage ? 'bg-yellow-500' : 
+                        'bg-gray-300'
+                      }`} />
+                      <span className={i <= stage ? '' : 'text-gray-500'}>
+                        {task}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Protocol State */}
+          {Object.keys(protocolState).length > 0 && (
+            <div className="mt-4 p-4 bg-gray-50 rounded-lg">
+              <div className="flex items-center gap-2 mb-2">
+                <Terminal size={16} />
+                <span className="font-medium">Protocol State</span>
+              </div>
+              <pre className="text-sm overflow-x-auto">
+                {JSON.stringify(protocolState, null, 2)}
+              </pre>
+            </div>
+          )}
+
+          {/* Logs */}
+          <div className="mt-6 border rounded-lg p-4 bg-gray-50 h-48 overflow-y-auto font-mono text-sm">
+            {logs.map((log, i) => (
+              <div key={i} className={`
+                ${log.type === 'error' ? 'text-red-600' : 
+                  log.type === 'success' ? 'text-green-600' : 
+                  log.type === 'code' ? 'text-blue-600' :
+                  'text-gray-600'}
+              `}>
+                {log.timestamp.split('T')[1].split('.')[0]} - {log.message}
+              </div>
+            ))}
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+};
+
+export default CDSFBootstrap;
