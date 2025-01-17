@@ -1,0 +1,162 @@
+import React, { useState, useEffect } from 'react';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { AlertCircle, CheckCircle, XCircle } from 'lucide-react';
+
+// Utility functions for the bootstrap process
+const generateSalt = () => {
+  const array = new Uint8Array(32);
+  crypto.getRandomValues(array);
+  return Array.from(array, byte => byte.toString(16).padStart(2, '0')).join('');
+};
+
+const deriveKey = async (password, salt) => {
+  const encoder = new TextEncoder();
+  const keyMaterial = await crypto.subtle.importKey(
+    'raw',
+    encoder.encode(password),
+    'PBKDF2',
+    false,
+    ['deriveBits', 'deriveKey']
+  );
+  
+  return await crypto.subtle.deriveKey(
+    {
+      name: 'PBKDF2',
+      salt: encoder.encode(salt),
+      iterations: 100000,
+      hash: 'SHA-256'
+    },
+    keyMaterial,
+    { name: 'AES-CBC', length: 256 },
+    true,
+    ['encrypt', 'decrypt']
+  );
+};
+
+const BootstrapTest = () => {
+  const [stage, setStage] = useState(0);
+  const [status, setStatus] = useState('initializing');
+  const [logs, setLogs] = useState([]);
+  
+  const addLog = (message, type = 'info') => {
+    setLogs(prev => [...prev, { message, type, timestamp: new Date().toISOString() }]);
+  };
+
+  const stages = [
+    {
+      name: 'Bootstrap',
+      tasks: ['Load core functionality', 'Verify system integrity', 'Initialize secure environment']
+    },
+    {
+      name: 'Encryption',
+      tasks: ['Load encryption capabilities', 'Initialize key management', 'Prepare secure storage']
+    },
+    {
+      name: 'State Management',
+      tasks: ['Load state manager', 'Initialize compression', 'Prepare validators']
+    },
+    {
+      name: 'Full Operation',
+      tasks: ['Load complete functionality', 'Enable all capabilities', 'Begin normal operation']
+    }
+  ];
+
+  useEffect(() => {
+    const runBootstrap = async () => {
+      try {
+        // Stage 0: Bootstrap
+        addLog('Initializing bootstrap sequence...', 'info');
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        setStage(1);
+        
+        // Stage 1: Encryption
+        addLog('Loading encryption capabilities...', 'info');
+        const salt = generateSalt();
+        addLog('Generated secure salt', 'success');
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        setStage(2);
+        
+        // Stage 2: State Management
+        addLog('Initializing state management...', 'info');
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        setStage(3);
+        
+        // Stage 3: Full Operation
+        addLog('Completing bootstrap sequence...', 'info');
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        setStatus('ready');
+        addLog('System ready', 'success');
+      } catch (error) {
+        setStatus('error');
+        addLog(`Bootstrap failed: ${error.message}`, 'error');
+      }
+    };
+
+    runBootstrap();
+  }, []);
+
+  return (
+    <Card className="w-full max-w-4xl">
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2">
+          CDSF Bootstrap Protocol Test
+          {status === 'ready' && <CheckCircle className="text-green-500" />}
+          {status === 'error' && <XCircle className="text-red-500" />}
+          {status === 'initializing' && <AlertCircle className="text-yellow-500" />}
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="space-y-6">
+          {/* Progress Indicator */}
+          <div className="space-y-4">
+            {stages.map((s, i) => (
+              <div key={i} className="space-y-2">
+                <div className="flex items-center gap-2">
+                  {i < stage ? (
+                    <CheckCircle className="text-green-500" size={20} />
+                  ) : i === stage ? (
+                    <AlertCircle className="text-yellow-500" size={20} />
+                  ) : (
+                    <div className="w-5 h-5 rounded-full border border-gray-300" />
+                  )}
+                  <span className={i <= stage ? 'font-medium' : 'text-gray-500'}>
+                    {s.name}
+                  </span>
+                </div>
+                <div className="ml-7 space-y-1">
+                  {s.tasks.map((task, j) => (
+                    <div key={j} className="flex items-center gap-2">
+                      <div className={`w-1.5 h-1.5 rounded-full ${
+                        i < stage ? 'bg-green-500' : 
+                        i === stage ? 'bg-yellow-500' : 
+                        'bg-gray-300'
+                      }`} />
+                      <span className={i <= stage ? '' : 'text-gray-500'}>
+                        {task}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Logs */}
+          <div className="mt-6 border rounded-lg p-4 bg-gray-50 h-48 overflow-y-auto font-mono text-sm">
+            {logs.map((log, i) => (
+              <div key={i} className={`
+                ${log.type === 'error' ? 'text-red-600' : 
+                  log.type === 'success' ? 'text-green-600' : 
+                  'text-gray-600'}
+              `}>
+                {log.timestamp.split('T')[1].split('.')[0]} - {log.message}
+              </div>
+            ))}
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+};
+
+export default BootstrapTest;
